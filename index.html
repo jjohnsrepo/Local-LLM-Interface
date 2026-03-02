@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightning Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_" />
+</head>
+<body>
+    <div id="main-wrapper">
+        <div id="input-container" class="initial">
+            <h1>Welcome to your local LLM interface</h1>
+            <div class="input-group">
+                <input id="input" placeholder="Insert your prompt...">
+                <button id="mybutton">Submit</button>
+            </div>
+            <div class="button_container" id="button_container">
+                <div id="unload">Unload the model</div>
+                <div id="choose_button" class="choose_button">Choose which model to use...</div>
+                <div class="model_options_container" id="model_options_container"></div>
+            </div>    
+        </div>
+        
+        <div id="chat-container">
+            <div id="chat"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
