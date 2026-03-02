@@ -1,7 +1,7 @@
 # ⚡ Lightning Chat – Local LLM Interface
 
 Lightning Chat is a lightweight web interface for interacting with locally running Large Language Models (LLMs).  
-It connects to a local API (such as **LM Studio**) and provides a simple, responsive chat UI directly in your browser.
+It connects to a LM Studio API and provides a simple, responsive chat UI directly in your browser.
 
 The goal of this project is to create a **minimal, fast, and clean frontend for local AI models** without needing heavy frameworks.
 

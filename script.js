@@ -83,7 +83,9 @@ async function send() {
     const body = {
         "model": current_model,
         "input": [{ "type": "text", "content": text }],
-        system_prompt: "You are a chatbot... Format your response as clean semantic HTML. No Markdown"
+        system_prompt: 
+        `You are a helpful chatbot. Return your answer in structured HTML. Never include any markdown. 
+         Never use Jargon. Never assume technical knowledge.`
     };
 
     if (lastResponseId) body.previous_response_id = lastResponseId;
