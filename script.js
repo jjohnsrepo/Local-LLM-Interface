@@ -35,7 +35,6 @@ async function choose_model(thisoption){
     current_model = thisoption.innerText
     console.log(current_model)
     model_options_container.innerText = thisoption.innerText
-    
 
 }
 
