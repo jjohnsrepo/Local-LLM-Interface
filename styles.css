@@ -1,108 +1,51 @@
-/* --- Variables & Reset --- */
-:root {
-    --bg-dark: #020617;
-    --bg-gradient: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
-    --card-bg: rgba(15, 23, 42, 0.8);
-    --electric-blue: #00d4ff;
-    --deep-blue: #1e293b;
-    --lightning-glow: 0 0 15px rgba(0, 212, 255, 0.5), 0 0 5px rgba(0, 212, 255, 0.3);
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --transition-speed: 0.7s;
-    --ease: cubic-bezier(0.16, 1, 0.3, 1); /* Modern "Out" easing */
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Monocraft';
-
 }
 
 body {
-    background-color: var(--bg-dark);
-    background-image: var(--bg-gradient);
-    color: var(--text-main);
-    height: 100vh;
-    overflow: auto; 
+    background: #fff;
+    color: #111;
+    min-height: 100vh;
 }
 
-
-/* --- Layout Structure --- */
 #main-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    width: 100%;
     padding: 20px;
 }
 
-/* --- The Input Container (The moving part) --- */
 #input-container {
     width: 100%;
     max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: margin-top var(--transition-speed) var(--ease), 
-                transform var(--transition-speed) var(--ease);
-    z-index: 100;
-    position: -webkit-sticky; /* Safari */
     position: sticky;
-    top: 20px;              /* distance from the top when stuck */
-    z-index: 1000;          /* sit above content while stuck */
-    border-radius: 12px;    /* optional, keeps rounded look when stuck */
-    padding: 6px 0;         /* small vertical padding so it doesn't appear cramped */
+    top: 20px;
+    transition: margin-top 0.4s ease;
 }
 
-/* Initial State: Centered on screen */
 #input-container.initial {
     margin-top: 25vh;
 }
 
-/* Active State: Slides to the top */
-#input-container.active {
-    margin-top: 0;
-    transform: scale(0.95); /* Subtle shrink when active for a "docked" look */
+#input-container.active h1 {
+    display: none;
 }
 
 h1 {
     text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    letter-spacing: -1px;
-    text-shadow: var(--lightning-glow);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
 }
 
-#input-container.active h1 {
-    opacity: 0;
-    transform: translateY(-20px);
-    pointer-events: none;
-    margin-bottom: 0;
-    height: 0; /* Collapses the space */
-}
-
-/* --- The Input Bar Group --- */
 .input-group {
     display: flex;
     width: 100%;
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid #1e293b;
-    border-radius: 16px;
-    padding: 10px;
-    gap: 10px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-
-.input-group:focus-within {
-    border-color: var(--electric-blue);
-    box-shadow: var(--lightning-glow);
+    border-bottom: 1px solid #111;
 }
 
 input {
@@ -110,161 +53,70 @@ input {
     background: transparent;
     border: none;
     outline: none;
-    color: white;
-    padding: 12px 15px;
-    font-size: 1.1rem;
+    color: #111;
+    padding: 8px 0;
+    font-size: 1rem;
 }
 
-input::placeholder {
-    color: var(--text-muted);
-}
-
-/* --- Buttons --- */
 button {
-    padding: 10px 24px;
-    border-radius: 12px;
+    background: none;
     border: none;
     cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    padding: 8px 12px;
+    color: #111;
 }
 
-.button_container{
-    margin-top: 15px;
-    display:flex;
-    gap:10px;
+.button_container {
+    margin-top: 12px;
+    display: flex;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: #666;
 }
 
-#mybutton {
-    background: var(--electric-blue);
-    color: var(--bg-dark);
-}
-
-#mybutton:hover {
-    display:flex;
-    align-items: center;
-    transform: translateY(-2px);
-    box-shadow: var(--lightning-glow);
-    filter: brightness(1.1);
-}
-
-.choose_button{
-    display:flex;
-    align-items: center;
-}
-
-.choose_button:hover{
-    cursor:pointer
-}
-
-
-.model-list-item{
-    border: 2px solid black;
-    border-radius: 8px;
-    padding:8px;
-}
-
-.model-list-item:hover{
+.choose_button,
+#unload {
     cursor: pointer;
 }
 
 #unload {
-    display:flex;
-    align-items: center;
-    height:30px;
-    color: #ef4444;
-    border-radius: 9px;
-    padding:15px;
-    opacity: 0.6;
+    color: #999;
 }
 
-#unload:hover{
+.model-list-item {
+    padding: 4px 0;
     cursor: pointer;
 }
 
-
-/* --- Chat Display Area --- */
 #chat-container {
     width: 100%;
     max-width: 850px;
-    flex-grow: 1; /* Takes all remaining space */
-    overflow-y: auto;
+    flex-grow: 1;
     margin-top: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-#input-container.active ~ #chat-container {
-    opacity: 1;
+    padding: 20px 0;
 }
 
 #chat {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
-/* --- Message Bubbles --- */
 .message {
-    padding: 16px 20px;
-    border-radius: 18px;
     max-width: 80%;
-    line-height: 1.6;
-    font-size: 1rem;
-    animation: messageSlideIn 0.4s var(--ease) forwards;
+    line-height: 1.5;
 }
-
-
 
 .user-msg {
     align-self: flex-end;
-    background: var(--deep-blue);
-    color: white;
-    border-bottom-right-radius: 4px;
-    border-right: 2px solid var(--electric-blue);
-}
-
-.material-symbols-outlined:hover{
-    cursor: pointer;
-}
-
-.material-symbols-outlined{
-    transition:1s;
+    color: #111;
 }
 
 .bot-msg {
     align-self: flex-start;
-    background: var(--card-bg);
-    color: var(--text-main);
-    border-bottom-left-radius: 4px;
-    border-left: 2px solid #6366f1; /* Purple accent for bot */
+    color: #444;
 }
 
-/* Custom Scrollbar */
-#chat-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-#chat-container::-webkit-scrollbar-thumb {
-    background: var(--deep-blue);
-    border-radius: 10px;
-}
-
-#chat-container::-webkit-scrollbar-thumb:hover {
-    background: var(--electric-blue);
-}   
-
-/* Animations */
-@keyframes messageSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.material-symbols-outlined {
+    cursor: pointer;
 }
